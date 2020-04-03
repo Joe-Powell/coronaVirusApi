@@ -9,12 +9,16 @@ body {
     width:100vw;
 }
 
+h1, h2 {
+    margin:30px;
+}
+
 h3{
     padding:5px;
 }
 
 .container, .container2 {
-    box-shadow:0px 0px 2.5px 0px black;
+     box-shadow:0px 3px 4px 0px black; 
     width:350px;
     padding:10px;
     margin: 50px 30px;
@@ -62,14 +66,11 @@ span {
         box-shadow:0px 0px 2.5px 0px black;
         width:92vw;
         padding:10px;
-        margin: 20px 10px;
+        margin: 20px 15px;
     }
 
-
-
-
+    h1, h2 {
+        margin:15px;
+    }
 
 }
-
-
-
