@@ -1,0 +1,138 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corona Virus API</title>
+    <link rel="stylesheet" href="style.css">
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+</head>
+<body>
+        <h3>This Page automatically updates itself every 10 seconds no need for a refresh</h3>
+        <span></span><br>
+  <div class="container">
+    <img src="americanFlag.jpg" alt="flag american"><br>
+    <div class='title1'>US Total Cases:</div> 
+    <div class="landing"></div><br>
+    <div class="title2">US Total Deaths:</div>
+    <div class="landing2"></div><br>
+    <div class="title3">US Total Recovered:</div>
+    <div class="landing3"></div>
+  </div>
+
+  <div class="container2">
+    <img src="https://img.icons8.com/color/48/000000/america.png"/><br>
+    <div class="title4">Total Global Cases: </div>
+    <div class="landing4"></div>
+    <div class="title5">Total Global Deaths: </div>
+    <div class="landing5"></div>
+    <div class="title6">Total Global Recoveries: </div>
+    <div class="landing6"></div>
+   </div>
+
+<div class="container3">
+   <div class="title7">Illinois Total infected:</div>
+   <div class="landing7"></div>
+  </div>
+
+
+
+<script>
+  
+  const landing = document.querySelector('.landing');
+  const landing2 = document.querySelector('.landing2');
+  const landing3 = document.querySelector('.landing3');
+  const landing4 = document.querySelector('.landing4');
+  const landing5 = document.querySelector('.landing5');
+  const landing6 = document.querySelector('.landing6');
+  const landing7 = document.querySelector('.landing7');
+  const span = document.querySelector('span');
+
+  function update() {
+  span.innerHTML='Checking Database...';
+ 
+      const xhr = new XMLHttpRequest();
+      let url = 'https://api.thevirustracker.com/free-api?countryTotal=US';
+        
+        xhr.responseType = 'json';
+        xhr.onreadystatechange = function()  {
+            if(xhr.readyState === XMLHttpRequest.DONE) {
+               let response= xhr.response; 
+               landing.innerHTML=response.countrydata[0].total_cases;
+               landing2.innerHTML=response.countrydata[0].total_deaths;
+               landing3.innerHTML=response.countrydata[0].total_recovered;
+               span.innerHTML='';
+               
+               console.log(response.countrydata[0].total_cases);
+               console.log(response.countrydata[0].total_deaths);
+               console.log(response.countrydata);
+              }
+            }
+        xhr.open('GET', url, true);
+    xhr.send();
+      }
+
+        // uploades on innitial page load the refreshes every 10 seconds
+      update();
+      setInterval(update, 10000);
+
+
+
+function updates2(){
+ 
+
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+ 
+xhr.responseType = 'json';
+xhr.addEventListener("readystatechange", function () {
+	if (this.readyState === this.DONE) {
+    let response= xhr.response; 
+    console.log(this.response);
+    landing4.innerHTML=response.total_cases;
+    landing5.innerHTML=response.total_deaths;
+    landing6.innerHTML=response.total_recovered;
+   
+    
+	}
+});
+
+xhr.open("GET", "https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php");
+xhr.setRequestHeader("x-rapidapi-host", "coronavirus-monitor.p.rapidapi.com");
+xhr.setRequestHeader("x-rapidapi-key", "a238c495eamsh40556e78532dceap152473jsnfb7ce34ab772");
+
+xhr.send();
+}
+
+updates2();
+setInterval(updates2, 10000);
+
+
+
+function update3() {
+ 
+      const xhr = new XMLHttpRequest();
+      let url = 'https://covidtracking.com/api/v1/states/current.json';
+      xhr.responseType = 'json';
+        xhr.onreadystatechange = function()  {
+            if(xhr.readyState === XMLHttpRequest.DONE) {
+               let response= xhr.response; 
+              
+          console.log(response);
+              }
+            }
+        xhr.open('GET', url, true);
+    xhr.send();
+}
+
+update3();
+
+
+
+</script>
+</body>
+</html>

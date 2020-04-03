@@ -1,0 +1,75 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: lightslategrey;
+    width:100vw;
+}
+
+h3{
+    padding:5px;
+}
+
+.container, .container2 {
+    box-shadow:0px 0px 2.5px 0px black;
+    width:350px;
+    padding:10px;
+    margin: 50px 30px;
+}
+
+
+/* made span absolute so it don't move other elements upon appearance */
+span {
+    position: absolute;
+}
+
+
+
+
+.title1,
+ .title2,
+ .title3,
+ .title4,
+ .title5,
+ .title6,
+ .title7 {
+    display: inline-block;
+    padding:5px;
+    font-size: 20px;
+}
+
+
+.landing,
+.landing2,
+.landing3,
+.landing4,
+.landing5,
+.landing6,
+.landing7 {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+   
+    color:blue;
+}
+
+
+@media (max-width: 450px) {
+    .container, .container2 {
+        box-shadow:0px 0px 2.5px 0px black;
+        width:92vw;
+        padding:10px;
+        margin: 20px 10px;
+    }
+
+
+
+
+
+}
+
+
+
