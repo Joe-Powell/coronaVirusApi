@@ -12,45 +12,61 @@
 
 </head>
 <body>
-
-  <h5>This Page automatically updates itself every 10 seconds no need for a refresh</h5>
-  <span></span><br>
+    <br/>
+ 
+  
 
   <h1>CORONAVIRUS PANDEMIC</h1>
-  <h2>Live Updates</h2>
+  <h2>Live Updates every 10 seconds <span> </span><br></h2>
+<div class='containerAll'>
+  
+      <div class="container">
+        <img src="https://img.icons8.com/color/48/000000/america.png"/><br>
+        <div class="title4">Total Global Cases: </div>
+        <div class="landing4"></div>
+        <div class="title5">Total Global Deaths: </div>
+        <div class="landing5"></div>
+        <div class="title6">Total Global Recoveries: </div>
+        <div class="landing6"></div>
+       </div>
+    
+    
+    
+    
+      <div class="container">
+        <img src="americanFlag.jpg" alt="flag american"><br>
+        <div class='title1'>US Total Cases:</div> 
+        <div class="landing"></div><br>
+        <div class="title2">US Total Deaths:</div>
+        <div class="landing2"></div><br>
+        <div class="title3">US Total Recovered:</div>
+        <div class="landing3"></div>
+      </div>
+    
+    
+      <div class="container">
+        <img src="http://www.anniesteam.com/wp-content/uploads/2012/09/italian-flag.jpg" alt="italian-flag" height='40px'><br>
+        <div class='title1'>Italy Total Cases:</div> 
+        <div class="landing7 landing"></div><br>
+        <div class="title2">Italy Total Deaths:</div>
+        <div class="landing8 landing"></div><br>
+        <div class="title3">Italy Total Recovered:</div>
+        <div class="landing9 landing"></div>
+      </div>
+    
+      <div class="container">
+        <img src="http://1.bp.blogspot.com/-kWVr6Nv0weQ/Uaz2o0gMobI/AAAAAAAABhw/5qoqR6rlNQc/s1600/Spain's_flag.jpg" alt="spain flag" height='40px'><br>
+        <div class='title1'>Spain Total Cases:</div> 
+        <div class="landing10 landing"></div><br>
+        <div class="title2">Spain Total Deaths:</div>
+        <div class="landing11 landing"></div><br>
+        <div class="title3">Spain Total Recovered:</div>
+        <div class="landing12 landing"></div>
+      </div>
+    
 
-  <div class="container2">
-    <img src="https://img.icons8.com/color/48/000000/america.png"/><br>
-    <div class="title4">Total Global Cases: </div>
-    <div class="landing4"></div>
-    <div class="title5">Total Global Deaths: </div>
-    <div class="landing5"></div>
-    <div class="title6">Total Global Recoveries: </div>
-    <div class="landing6"></div>
-   </div>
 
-
-
-
-  <div class="container">
-    <img src="americanFlag.jpg" alt="flag american"><br>
-    <div class='title1'>US Total Cases:</div> 
-    <div class="landing"></div><br>
-    <div class="title2">US Total Deaths:</div>
-    <div class="landing2"></div><br>
-    <div class="title3">US Total Recovered:</div>
-    <div class="landing3"></div>
-  </div>
-
-
-
-<!-- <div class="container3">
-   <div class="title7">Illinois Total infected:</div>
-   <div class="landing7"></div>
-  </div> -->
-
-
-
+</div>
 <script>
   
   const landing = document.querySelector('.landing');
@@ -60,15 +76,23 @@
   const landing5 = document.querySelector('.landing5');
   const landing6 = document.querySelector('.landing6');
   const landing7 = document.querySelector('.landing7');
+  const landing8 = document.querySelector('.landing8');
+  const landing9 = document.querySelector('.landing9');
+  const landing10 = document.querySelector('.landing10');
+  const landing11 = document.querySelector('.landing11');
+  const landing12 = document.querySelector('.landing12');
+  
+  
   const span = document.querySelector('span');
 
+  
+  
+  
   function update() {
-  span.innerHTML='Checking Database...';
- 
-      const xhr = new XMLHttpRequest();
-      let url = 'https://api.thevirustracker.com/free-api?countryTotal=US';
-        
-        xhr.responseType = 'json';
+    span.innerHTML='Checking Database...';
+    const xhr = new XMLHttpRequest();
+    let url = 'https://api.thevirustracker.com/free-api?countryTotal=us';
+    xhr.responseType = 'json';
         xhr.onreadystatechange = function()  {
             if(xhr.readyState === XMLHttpRequest.DONE) {
                let response= xhr.response; 
@@ -77,71 +101,89 @@
                landing3.innerHTML=response.countrydata[0].total_recovered;
                span.innerHTML='';
                
-               console.log(response.countrydata[0].total_cases);
-               console.log(response.countrydata[0].total_deaths);
-               console.log(response.countrydata);
+           
               }
             }
         xhr.open('GET', url, true);
     xhr.send();
       }
 
-        // uploades on innitial page load the refreshes every 10 seconds
       update();
       setInterval(update, 10000);
 
 
 
-function updates2(){
- 
-
-const xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
- 
-xhr.responseType = 'json';
-xhr.addEventListener("readystatechange", function () {
-	if (this.readyState === this.DONE) {
-    let response= xhr.response; 
-    console.log(this.response);
-    landing4.innerHTML=response.total_cases;
-    landing5.innerHTML=response.total_deaths;
-    landing6.innerHTML=response.total_recovered;
-   
+    function updates2(){
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.responseType = 'json';
+        xhr.addEventListener("readystatechange", function () {
+        	if (this.readyState === this.DONE) {
+            let response= xhr.response; 
+            // console.log(this.response);
+            landing4.innerHTML=response.total_cases;
+            landing5.innerHTML=response.total_deaths;
+            landing6.innerHTML=response.total_recovered;
+            }
+        });
     
-	}
-});
-
-xhr.open("GET", "https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php");
-xhr.setRequestHeader("x-rapidapi-host", "coronavirus-monitor.p.rapidapi.com");
-xhr.setRequestHeader("x-rapidapi-key", "a238c495eamsh40556e78532dceap152473jsnfb7ce34ab772");
-
-xhr.send();
-}
-
-updates2();
-setInterval(updates2, 10000);
+        xhr.open("GET", "https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php");
+        xhr.setRequestHeader("x-rapidapi-host", "coronavirus-monitor.p.rapidapi.com");
+        xhr.setRequestHeader("x-rapidapi-key", "a238c495eamsh40556e78532dceap152473jsnfb7ce34ab772");
+        
+        xhr.send();
+    }
+    
+        updates2();
+        setInterval(updates2, 10000);
 
 
 
-function update3() {
- 
-      const xhr = new XMLHttpRequest();
-      let url = 'https://covidtracking.com/api/v1/states/current.json';
-      xhr.responseType = 'json';
+
+
+
+      function updateItaly() {
+        const xhr = new XMLHttpRequest();
+        let url = 'https://api.thevirustracker.com/free-api?countryTotal=it';
+        xhr.responseType = 'json';
         xhr.onreadystatechange = function()  {
             if(xhr.readyState === XMLHttpRequest.DONE) {
                let response= xhr.response; 
+               landing7.innerHTML=response.countrydata[0].total_cases;
+               landing8.innerHTML=response.countrydata[0].total_deaths;
+               landing9.innerHTML=response.countrydata[0].total_recovered;
               
-          console.log(response);
+               }
+            }
+            xhr.open('GET', url, true);
+            xhr.send();
+      }
+
+        
+      updateItaly();
+      setInterval(updateItaly, 10000);
+      
+      
+      
+      
+      function updateSpain() {
+         xhr = new XMLHttpRequest();
+        let url = 'https://api.thevirustracker.com/free-api?countryTotal=es';
+        xhr.responseType = 'json';
+        xhr.onreadystatechange = function()  {
+            if(xhr.readyState === XMLHttpRequest.DONE) {
+               let response= xhr.response; 
+               landing10.innerHTML=response.countrydata[0].total_cases;
+               landing11.innerHTML=response.countrydata[0].total_deaths;
+               landing12.innerHTML=response.countrydata[0].total_recovered;
               }
             }
-        xhr.open('GET', url, true);
-    xhr.send();
-}
+            xhr.open('GET', url, true);
+             xhr.send();
+      }
 
-update3();
-
-
+       updateSpain();
+      setInterval(updateSpain, 10000);
 
 </script>
 </body>
